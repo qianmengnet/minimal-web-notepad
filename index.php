@@ -30,17 +30,17 @@ if (isset($_POST['text'])) {
     $responseText = "";
 	  if ($include_Header) { if (checkHeader($path, null) || isset($_POST['notepwd'])) { $header = setHeader($allow_password);} else $header = "";}
     file_put_contents($path, $header . $_POST['text']);
-    $responseText =  "saved"; //for lastsaved logic
+    $responseText =  "已保存"; //for lastsaved logic
 
     // the following 3 lines can be commented out if you don't want to check write permissions
     $filecheck = file_exists($path);
-    if ($filecheck) $responseText =  "saved"; //for lastsaved logic
+    if ($filecheck) $responseText =  "已保存"; //for lastsaved logic
     if (!is_writable($path)) $responseText = 'error';
 
     // If provided input is empty, delete file.
     if (!strlen($_POST['text'])) {
         unlink($path);
-        $responseText = "deleted";
+        $responseText = "已删除";
     }
     echo $responseText;
     die();
